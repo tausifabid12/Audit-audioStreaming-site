@@ -8,6 +8,7 @@ import {
   MdSkipPrevious,
   MdVolumeUp,
 } from 'react-icons/md';
+import { useMusicData } from '../../Contexts/MusicProvider/MusicProvider';
 
 const Player = () => {
   //states
@@ -15,6 +16,9 @@ const Player = () => {
   const [trackDuration, setTrackDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentDuration, setCurrentDuration] = useState(0);
+
+  // getting song info from global state
+  const { state } = useMusicData();
 
   //references
   const audioPlayer = useRef();
@@ -32,13 +36,23 @@ const Player = () => {
   };
 
   useEffect(() => {
+    setTrackIndex(state?.currentAudioInfo?.audioUrl);
+
+    if (trackIndex) {
+      const prevValue = isPlaying;
+      setIsPlaying(!prevValue);
+    }
+
     const seconds = Math.floor(audioPlayer?.current.duration);
     setTrackDuration(seconds);
     progressBar.current.max = seconds;
-  }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
+  }, [
+    audioPlayer?.current?.loadedmetadata,
+    audioPlayer?.current?.readyState,
+    state?.currentAudioInfo,
+  ]);
 
   const handlePlayPause = () => {
-    setTrackIndex('/audio.mp3');
     const prevValue = isPlaying;
     setIsPlaying(!prevValue);
 
@@ -69,7 +83,13 @@ const Player = () => {
 
   return (
     <section className="  fixed bottom-0 w-full h-24 bg-[#1818183d]  backdrop-blur-md z-50">
-      <audio ref={audioPlayer} src="/audio.mp3" preload="metadata"></audio>
+      {/* <audio
+        ref={audioPlayer}
+        src={state?.currentAudioInfo?.audioUrl}
+        controls
+        preload="metadata"
+      ></audio> */}
+      <audio ref={audioPlayer} src={trackIndex} preload="metadata"></audio>
       <div className="w-full flex justify-center items-start space-x-5 px-6 ">
         <p className="text-md text-white font-semibold">
           {currentDuration &&
@@ -94,9 +114,11 @@ const Player = () => {
           {/* <img className="w-16 h-16 rounded-md" src="/demo.jpg" alt="" /> */}
           <div className="pl-2">
             <p className="text-sm lg:text-lg text-gray-400 font-semibold">
-              Song Name
+              {state?.currentAudioInfo?.songName}
             </p>
-            <p className="text-sm text-gray-600">Artist name</p>
+            <p className="text-sm text-gray-600">
+              {state?.currentAudioInfo?.artistName}
+            </p>
           </div>
         </div>
         <div className="flex items-center justify-center space-x-6 text-white text-4xl">

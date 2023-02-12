@@ -16,3 +16,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export default app;
+
+// apiKey: process.env.Firebase_apiKey,
+// authDomain: process.env.Firebase_authDomain,
+// projectId: process.env.Firebase_projectId,
+// storageBucket: process.env.Firebase_storageBucket,
+// messagingSenderId: process.env.Firebase_messagingSenderId,
+// appId: process.env.Firebase_appId,
