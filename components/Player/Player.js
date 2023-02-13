@@ -9,16 +9,17 @@ import {
   MdVolumeUp,
 } from 'react-icons/md';
 import { useMusicData } from '../../Contexts/MusicProvider/MusicProvider';
+import { ActionTypes } from '../../state/MusicState/ActionTypes';
 
 const Player = () => {
   //states
   const [trackIndex, setTrackIndex] = useState('');
   const [trackDuration, setTrackDuration] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  // const [isPlaying, setIsPlaying] = useState(false);
   const [currentDuration, setCurrentDuration] = useState(0);
 
   // getting song info from global state
-  const { state } = useMusicData();
+  const { state, dispatch } = useMusicData();
 
   //references
   const audioPlayer = useRef();
@@ -39,8 +40,12 @@ const Player = () => {
     setTrackIndex(state?.currentAudioInfo?.audioUrl);
 
     if (trackIndex) {
-      const prevValue = isPlaying;
-      setIsPlaying(!prevValue);
+      dispatch({
+        type: ActionTypes.IsSongPlaying,
+        payload: !state?.isPlaying,
+      });
+      // const prevValue = isPlaying;
+      // setIsPlaying(!prevValue);
     }
 
     const seconds = Math.floor(audioPlayer?.current.duration);
@@ -50,13 +55,13 @@ const Player = () => {
     audioPlayer?.current?.loadedmetadata,
     audioPlayer?.current?.readyState,
     state?.currentAudioInfo,
+    state?.currentAudioInfo?.audioUrl,
   ]);
 
-  const handlePlayPause = () => {
-    const prevValue = isPlaying;
-    setIsPlaying(!prevValue);
+  console.log(state?.isPlaying);
 
-    if (prevValue) {
+  useEffect(() => {
+    if (state?.isPlaying) {
       audioPlayer.current.play();
       animateProgressBar.current = requestAnimationFrame(whilePlaying);
     } else {
@@ -64,7 +69,23 @@ const Player = () => {
       cancelAnimationFrame(animateProgressBar.current);
     }
     console.log(trackIndex);
-  };
+  }, [state?.isPlaying]);
+
+  // const handlePlayPause = () => {
+  //   console.log(state?.isPlaying, 'before');
+  // dispatch({
+  //   type: ActionTypes.IsSongPlaying,
+  //   payload: !state?.isPlaying,
+  // });
+  //   if (state?.isPlaying) {
+  //     audioPlayer.current.play();
+  //     animateProgressBar.current = requestAnimationFrame(whilePlaying);
+  //   } else {
+  //     audioPlayer.current.pause();
+  //     cancelAnimationFrame(animateProgressBar.current);
+  //   }
+  //   console.log(trackIndex);
+  // };
 
   const whilePlaying = () => {
     progressBar.current.value = audioPlayer.current.currentTime;
@@ -127,12 +148,26 @@ const Player = () => {
           </p>
           {/* play button */}
 
-          {isPlaying ? (
-            <p onClick={handlePlayPause}>
+          {state?.isPlaying ? (
+            <p
+              onClick={() => {
+                dispatch({
+                  type: ActionTypes.IsSongPlaying,
+                  payload: !state?.isPlaying,
+                });
+              }}
+            >
               <MdPauseCircle />
             </p>
           ) : (
-            <p onClick={handlePlayPause}>
+            <p
+              onClick={() => {
+                dispatch({
+                  type: ActionTypes.IsSongPlaying,
+                  payload: !state?.isPlaying,
+                });
+              }}
+            >
               <MdPlayCircle />
             </p>
           )}

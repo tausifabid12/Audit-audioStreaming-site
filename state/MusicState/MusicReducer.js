@@ -5,6 +5,7 @@ export const initialState = {
   error: false,
   songData: [],
   currentAudioInfo: {},
+  isPlaying: false,
 };
 
 export const musicReducer = (state, action) => {
@@ -30,6 +31,11 @@ export const musicReducer = (state, action) => {
       return {
         ...state,
         currentAudioInfo: action.payload,
+      };
+    case ActionTypes.IsSongPlaying:
+      return {
+        ...state,
+        isPlaying: action.payload,
       };
 
     default:

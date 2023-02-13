@@ -3,4 +3,5 @@ export const ActionTypes = {
   Fetching_Finished: 'Fetching_Finished',
   Error: 'Error',
   AddCurrentSongInfo: 'AddCurrentSongInfo',
+  IsSongPlaying: 'IsSongPlaying',
 };
