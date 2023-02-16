@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
+import Player from '../Player/Player';
 
 const Layout = ({ children }) => {
   return (
@@ -40,6 +41,7 @@ const Layout = ({ children }) => {
           </ul>
         </div>
       </div>
+      <Player />
     </div>
   );
 };

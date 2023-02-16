@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout/Layout';
-import Player from '../components/Player/Player';
 import { useForm } from 'react-hook-form';
 import {
   getDownloadURL,
@@ -224,7 +223,6 @@ const uploadSongs = () => {
         </section>
         <Toaster position="top-center" reverseOrder={false} />
       </Layout>
-      <Player />
     </div>
   );
 };

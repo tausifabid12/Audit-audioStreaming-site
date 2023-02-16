@@ -30,7 +30,6 @@ export default function Home() {
           </div>
         </main>
       </Layout>
-      <Player />
     </div>
   );
 }
