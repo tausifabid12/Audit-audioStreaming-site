@@ -1,3 +1,4 @@
+import Hero from '../components/Hero/Hero';
 import Layout from '../components/Layout/Layout';
 import MusicCard from '../components/MusicCard/MusicCard';
 import Player from '../components/Player/Player';
@@ -11,14 +12,16 @@ export default function Home() {
   }
   return (
     <div
-      style={{
-        backgroundImage: 'url(/bg.jpg)',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-      }}
+      className="bg-[#13131a]"
+      // style={{
+      //   backgroundImage: 'url(/bg.jpg)',
+      //   backgroundPosition: 'center',
+      //   backgroundSize: 'cover',
+      // }}
     >
       <Layout>
         <main>
+          <Hero />
           <div className="p-7">
             <h2 className="text-white font-bold text-2xl pb-5">New To Audit</h2>
             <div className="h-full grid grid-cols-2 lg:grid-cols-5 gap-3 ">
