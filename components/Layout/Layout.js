@@ -35,10 +35,10 @@ const Layout = ({ children }) => {
       {/* <Navbar /> */}
       <div className="flex">
         <motion.div
-          animate={{ width: isOpen ? '280px' : '60px' }}
+          animate={{ width: isOpen ? '300px' : '60px' }}
           className=" bg-black/30 backdrop-blur-md min-h-screen relative  py-5"
         >
-          <div className="sticky z-50 w-full h-96 ">
+          <div className=" ">
             <div className="text-white flex items-center justify-between  space-x-3 px-2">
               <motion.div
                 className={`${
