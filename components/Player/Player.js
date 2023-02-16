@@ -13,9 +13,7 @@ import { ActionTypes } from '../../state/MusicState/ActionTypes';
 
 const Player = () => {
   //states
-  const [trackIndex, setTrackIndex] = useState('');
   const [trackDuration, setTrackDuration] = useState(0);
-  // const [isPlaying, setIsPlaying] = useState(false);
   const [currentDuration, setCurrentDuration] = useState(0);
 
   // getting song info from global state
@@ -37,55 +35,33 @@ const Player = () => {
   };
 
   useEffect(() => {
-    setTrackIndex(state?.currentAudioInfo?.audioUrl);
-
-    if (trackIndex) {
+    if (state?.currentAudioInfo?.audioUrl) {
+      audioPlayer.current.load();
+      setCurrentDuration(0);
       dispatch({
         type: ActionTypes.IsSongPlaying,
-        payload: !state?.isPlaying,
+        payload: true,
       });
-      // const prevValue = isPlaying;
-      // setIsPlaying(!prevValue);
+    } else {
+      return;
     }
 
     const seconds = Math.floor(audioPlayer?.current.duration);
     setTrackDuration(seconds);
     progressBar.current.max = seconds;
-  }, [
-    audioPlayer?.current?.loadedmetadata,
-    audioPlayer?.current?.readyState,
-    state?.currentAudioInfo,
-    state?.currentAudioInfo?.audioUrl,
-  ]);
-
-  console.log(state?.isPlaying);
+  }, [state?.currentAudioInfo?.audioUrl]);
 
   useEffect(() => {
     if (state?.isPlaying) {
+      audioPlayer.current.load();
       audioPlayer.current.play();
+      audioPlayer.current.currentTime = currentDuration;
       animateProgressBar.current = requestAnimationFrame(whilePlaying);
     } else {
       audioPlayer.current.pause();
       cancelAnimationFrame(animateProgressBar.current);
     }
-    console.log(trackIndex);
   }, [state?.isPlaying]);
-
-  // const handlePlayPause = () => {
-  //   console.log(state?.isPlaying, 'before');
-  // dispatch({
-  //   type: ActionTypes.IsSongPlaying,
-  //   payload: !state?.isPlaying,
-  // });
-  //   if (state?.isPlaying) {
-  //     audioPlayer.current.play();
-  //     animateProgressBar.current = requestAnimationFrame(whilePlaying);
-  //   } else {
-  //     audioPlayer.current.pause();
-  //     cancelAnimationFrame(animateProgressBar.current);
-  //   }
-  //   console.log(trackIndex);
-  // };
 
   const whilePlaying = () => {
     progressBar.current.value = audioPlayer.current.currentTime;
@@ -103,14 +79,16 @@ const Player = () => {
   };
 
   return (
-    <section className="  fixed bottom-0 w-full h-24 bg-[#1818183d]  backdrop-blur-md z-50">
-      {/* <audio
+    <section
+      className={`${
+        state?.currentAudioInfo?.audioUrl ? 'fixed' : 'hidden'
+      } bottom-0 w-full h-24 bg-[#1818183d]  backdrop-blur-md z-50`}
+    >
+      <audio
         ref={audioPlayer}
         src={state?.currentAudioInfo?.audioUrl}
-        controls
         preload="metadata"
-      ></audio> */}
-      <audio ref={audioPlayer} src={trackIndex} preload="metadata"></audio>
+      ></audio>
       <div className="w-full flex justify-center items-start space-x-5 px-6 ">
         <p className="text-md text-white font-semibold">
           {currentDuration &&
@@ -125,14 +103,13 @@ const Player = () => {
           className="range range-xs range-primary h-1 mt-3 grid "
         />
         <p className="text-md text-white font-semibold">
-          {trackDuration &&
-            !isNaN(trackDuration) &&
-            calculateTime(trackDuration)}
+          {trackDuration && !isNaN(trackDuration)
+            ? calculateTime(trackDuration)
+            : '2:00'}
         </p>
       </div>
       <div className="grid grid-cols-3 px-7 place-content-center mt-3">
         <div className="flex items-center">
-          {/* <img className="w-16 h-16 rounded-md" src="/demo.jpg" alt="" /> */}
           <div className="pl-2">
             <p className="text-sm lg:text-lg text-gray-400 font-semibold">
               {state?.currentAudioInfo?.songName}

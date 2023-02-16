@@ -1,7 +1,7 @@
 export const ActionTypes = {
-  Fetching_Start: 'Fetching_Start',
-  Fetching_Finished: 'Fetching_Finished',
+  Loading: 'Loading',
   Error: 'Error',
   AddCurrentSongInfo: 'AddCurrentSongInfo',
   IsSongPlaying: 'IsSongPlaying',
+  SongData: 'SongData',
 };

@@ -10,23 +10,17 @@ export const initialState = {
 
 export const musicReducer = (state, action) => {
   switch (action.type) {
-    case ActionTypes.Fetching_Start:
+    case ActionTypes.Loading:
       return {
         ...state,
-        loading: true,
+        loading: action.payload,
       };
-    case ActionTypes.Fetching_Finished:
+    case ActionTypes.SongData:
       return {
         ...state,
-        loading: false,
-        allSongData: action.payload,
+        songData: action.payload,
       };
-    case ActionTypes.Error:
-      return {
-        ...state,
-        loading: false,
-        error: true,
-      };
+
     case ActionTypes.AddCurrentSongInfo:
       return {
         ...state,

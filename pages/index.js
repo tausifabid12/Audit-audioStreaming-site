@@ -4,10 +4,11 @@ import Player from '../components/Player/Player';
 import { useMusicData } from '../Contexts/MusicProvider/MusicProvider';
 
 export default function Home() {
-  const allMusicData = useMusicData();
+  const { state } = useMusicData();
 
-  const allData = allMusicData?.allSongData;
-
+  if (state.loading) {
+    return <p className="text-4xl font-bold">loading....</p>;
+  }
   return (
     <div
       style={{
@@ -21,9 +22,8 @@ export default function Home() {
           <div className="p-7">
             <h2 className="text-white font-bold text-2xl pb-5">New To Audit</h2>
             <div className="h-full grid grid-cols-2 lg:grid-cols-5 gap-3 ">
-              {/* {allData} */}
-              {allData?.success &&
-                allData?.data.map((data) => (
+              {state?.songData.length &&
+                state?.songData.map((data) => (
                   <MusicCard key={data?._id} data={data} />
                 ))}
             </div>

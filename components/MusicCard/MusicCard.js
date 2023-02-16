@@ -5,6 +5,8 @@ import { ActionTypes } from '../../state/MusicState/ActionTypes';
 const MusicCard = ({ data }) => {
   const { dispatch, state } = useMusicData();
   const { songName, imgUrl, audioUrl, artistName, albumName } = data;
+
+  console.log(state);
   return (
     <div className="w-full h-[230px] rounded-lg bg-black/40 backdrop-blur-md p-3 ">
       <div className="h-2/3 w-full">
@@ -23,12 +25,16 @@ const MusicCard = ({ data }) => {
         </h2>
       </div>
       <button
-        onClick={() =>
+        onClick={() => {
           dispatch({
             type: ActionTypes.AddCurrentSongInfo,
             payload: { songName, artistName, audioUrl },
-          })
-        }
+          });
+          dispatch({
+            type: ActionTypes.IsSongPlaying,
+            payload: !state.isPlaying,
+          });
+        }}
         className="w-10 h-10 rounded-full bg-primary"
       >
         paly

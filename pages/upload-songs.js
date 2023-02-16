@@ -224,7 +224,7 @@ const uploadSongs = () => {
         </section>
         <Toaster position="top-center" reverseOrder={false} />
       </Layout>
-      {/* <Player /> */}
+      <Player />
     </div>
   );
 };
