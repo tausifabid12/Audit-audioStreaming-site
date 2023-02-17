@@ -3,6 +3,11 @@ import Layout from '../components/Layout/Layout';
 import MusicCard from '../components/MusicCard/MusicCard';
 import Player from '../components/Player/Player';
 import { useMusicData } from '../Contexts/MusicProvider/MusicProvider';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import NewSongSec from '../components/NewSongSec/NewSongSec';
+import UpcomingEvent from '../components/UpcomingEvent/UpcomingEvent';
+import FlatMusicCard from '../components/FlatMusicCard/FlatMusicCard';
+import SongsTab from '../components/Songstab/SongsTab';
 
 export default function Home() {
   const { state } = useMusicData();
@@ -22,14 +27,10 @@ export default function Home() {
       <Layout>
         <main>
           <Hero />
-          <div className="p-7">
-            <h2 className="text-white font-bold text-2xl pb-5">New To Audit</h2>
-            <div className="h-full grid grid-cols-2 lg:grid-cols-5 gap-5 ">
-              {state?.songData.length &&
-                state?.songData.map((data) => (
-                  <MusicCard key={data?._id} data={data} />
-                ))}
-            </div>
+          <NewSongSec />
+          <div className="grid grid-cols-1 lg:grid-cols-2 pag-2">
+            <UpcomingEvent />
+            <SongsTab />
           </div>
         </main>
       </Layout>

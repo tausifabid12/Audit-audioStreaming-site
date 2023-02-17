@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
       {/* <Navbar /> */}
       <div className="flex">
         <motion.div
-          animate={{ width: isOpen ? '300px' : '60px' }}
+          animate={{ width: isOpen ? '410px' : '60px' }}
           className=" bg-black/30 backdrop-blur-md min-h-screen relative  py-5"
         >
           <div className=" ">
@@ -60,7 +60,7 @@ const Layout = ({ children }) => {
             <div className="mt-12">
               {pages.map((page) => (
                 <Link key={page.id} href={page.route}>
-                  <div className="py-3 text-white w-full flex space-x-4 px-3 hover:bg-white/5 capitalize">
+                  <div className="py-3 text-white w-full capitalize  flex space-x-4 px-3 transition-all duration-75 ease-linear hover:bg-gradient-to-r from-[rgba(25,110,237,0.3)] to-transparent hover:border-l-4 border-primary">
                     <span className="text-2xl">{page.icon}</span>
                     <motion.p
                       animate={{

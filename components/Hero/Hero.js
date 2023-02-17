@@ -10,7 +10,7 @@ const Hero = () => {
       }}
       className="h-80 w-full relative"
     >
-      <div className="h-32 w-full absolute bottom-0 bg-gradient-to-t from-[#13131a] to-transparent "></div>
+      <div className="h-48 w-full absolute bottom-0 bg-gradient-to-t from-[#13131a] to-transparent "></div>
     </section>
   );
 };
