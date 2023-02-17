@@ -5,7 +5,7 @@ import MusicCard from '../MusicCard/MusicCard';
 const NewSongSec = () => {
   const { state } = useMusicData();
   return (
-    <div className="p-7 pb-16 -my-16 w-full relative z-20">
+    <div className="p-7 pb-16 -mt-20 w-full relative z-20">
       <p className="text-gray-300 text-xs capitalize">LISTEN TOP CHARTS</p>
       <h2 className="text-white font-bold text-4xl pb-5">
         New To <span className="text-primary">Audit</span>

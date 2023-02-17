@@ -33,17 +33,34 @@ const Layout = ({ children }) => {
   return (
     <>
       {/* <Navbar /> */}
-      <div className="flex">
-        <motion.div
-          animate={{ width: isOpen ? '410px' : '60px' }}
-          className=" bg-black/30 backdrop-blur-md min-h-screen relative  py-5"
-        >
-          <div className=" ">
-            <div className="text-white flex items-center justify-between  space-x-3 px-2">
+      <div className="drawer drawer-mobile">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content ">
+          {/* <!-- Page content here --> */}
+          {children}
+          <label
+            htmlFor="my-drawer-2"
+            className="btn btn-primary drawer-button lg:hidden"
+          >
+            Open drawer
+          </label>
+        </div>
+        <div className="z-50">
+          <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+
+          <motion.ul
+            animate={{ width: isOpen ? '230px' : '80px' }}
+            className=" w-60 bg-black/30 backdrop-blur-md  h-screen text-white pt-6"
+          >
+            <li className="text-white flex items-center justify-between  space-x-3 px-2 mb-8">
               <motion.div
+                // animate={{
+                //   opacity: isOpen ? '1' : '0',
+                //   scale: isOpen ? [0, 1.1, 1] : [1, 0],
+                // }}
                 className={`${
                   isOpen ? 'flex ' : 'hidden'
-                }  text-white items-center space-x-3 `}
+                }  text-white items-center space-x-3`}
               >
                 <span className="text-3xl text-primary">
                   <RiGpsFill />
@@ -56,9 +73,10 @@ const Layout = ({ children }) => {
               >
                 <RiMenu3Fill />
               </p>
-            </div>
-            <div className="mt-12">
-              {pages.map((page) => (
+            </li>
+            {/* <!-- Sidebar content here --> */}
+            {pages.map((page) => (
+              <li>
                 <Link key={page.id} href={page.route}>
                   <div className="py-3 text-white w-full capitalize  flex space-x-4 px-3 transition-all duration-75 ease-linear hover:bg-gradient-to-r from-[rgba(25,110,237,0.3)] to-transparent hover:border-l-4 border-primary">
                     <span className="text-2xl">{page.icon}</span>
@@ -77,11 +95,10 @@ const Layout = ({ children }) => {
                     </motion.p>
                   </div>
                 </Link>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-        <main>{children}</main>
+              </li>
+            ))}
+          </motion.ul>
+        </div>
       </div>
 
       <Player />

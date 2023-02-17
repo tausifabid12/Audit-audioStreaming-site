@@ -1,9 +1,11 @@
 import React from 'react';
+import { useMusicData } from '../../Contexts/MusicProvider/MusicProvider';
 import FlatMusicCard from '../FlatMusicCard/FlatMusicCard';
 
 const SongsTab = () => {
+  const { state } = useMusicData();
   return (
-    <div className="py-5 px-8">
+    <div className="m-0 px-8">
       <div className="flex items-center w-full mb-6 border-b-[1px] border-gray-800 text-gray-100">
         <a
           rel="noopener noreferrer"
@@ -20,10 +22,10 @@ const SongsTab = () => {
         </a>
       </div>
       <div>
-        <FlatMusicCard />
-        <FlatMusicCard />
-        <FlatMusicCard />
-        <FlatMusicCard />
+        {state.songData &&
+          state.songData
+            .slice(0, 4)
+            .map((song) => <FlatMusicCard key={song?._id} data={song} />)}
       </div>
     </div>
   );
