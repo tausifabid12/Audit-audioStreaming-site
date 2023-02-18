@@ -8,7 +8,7 @@ import { SiCoronaengine } from 'react-icons/si';
 import { RiAlbumFill, RiGpsFill, RiMenu3Fill } from 'react-icons/ri';
 
 const Layout = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const pages = [
     {
       id: 1,
@@ -34,19 +34,19 @@ const Layout = ({ children }) => {
     <>
       {/* <Navbar /> */}
       <div className="drawer drawer-mobile">
-        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <input id="sideBar" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content ">
           {/* <!-- Page content here --> */}
           {children}
           <label
-            htmlFor="my-drawer-2"
+            htmlFor="sideBar"
             className="btn btn-primary drawer-button lg:hidden"
           >
             Open drawer
           </label>
         </div>
         <div className="z-50">
-          <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+          <label htmlFor="sideBar" className="drawer-overlay"></label>
 
           <motion.ul
             animate={{ width: isOpen ? '230px' : '80px' }}

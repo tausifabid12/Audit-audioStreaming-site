@@ -12,6 +12,7 @@ import ArtistCard from '../components/ArtistCard/ArtistCard';
 import HomeArtistSec from '../components/HomeArtistSec/HomeArtistSec';
 import TradingSongs from '../components/TradingSongs/TradingSongs';
 import BestPlayList from '../components/BestPlayList/BestPlayList';
+import Footer from '../components/Footer/Footer';
 
 export default function Home() {
   const { state } = useMusicData();
@@ -33,6 +34,7 @@ export default function Home() {
           <HomeArtistSec />
           <TradingSongs />
           <BestPlayList />
+          <Footer />
         </div>
       </Layout>
     </div>

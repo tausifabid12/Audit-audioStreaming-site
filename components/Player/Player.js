@@ -25,6 +25,7 @@ const Player = () => {
   const volumeBar = useRef();
   const animateProgressBar = useRef();
 
+  // making time user friendly
   const calculateTime = (sec) => {
     const minutes = Math.floor(sec / 60);
     const formateMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
@@ -34,6 +35,7 @@ const Player = () => {
     return `${formateMinutes}:${formateSeconds}`;
   };
 
+  //tracing song change
   useEffect(() => {
     if (state?.currentAudioInfo?.audioUrl) {
       audioPlayer.current.load();
@@ -45,12 +47,12 @@ const Player = () => {
     } else {
       return;
     }
-
     const seconds = Math.floor(audioPlayer?.current.duration);
     setTrackDuration(seconds);
-    progressBar.current.max = seconds;
+    progressBar.current.max = state?.currentAudioInfo?.duration;
   }, [state?.currentAudioInfo?.audioUrl]);
 
+  //tracing paly pause
   useEffect(() => {
     if (state?.isPlaying) {
       audioPlayer.current.load();
@@ -63,6 +65,7 @@ const Player = () => {
     }
   }, [state?.isPlaying]);
 
+  //animating song duration process
   const whilePlaying = () => {
     progressBar.current.value = audioPlayer.current.currentTime;
     setCurrentDuration(progressBar.current.value);
@@ -74,6 +77,7 @@ const Player = () => {
     setCurrentDuration(progressBar.current.value);
   };
 
+  //handling volume
   const handleVolume = () => {
     audioPlayer.current.volume = volumeBar.current.value / 100;
   };
@@ -105,7 +109,7 @@ const Player = () => {
         <p className="text-md text-white font-semibold">
           {trackDuration && !isNaN(trackDuration)
             ? calculateTime(trackDuration)
-            : '2:00'}
+            : state?.currentAudioInfo?.duration}
         </p>
       </div>
       <div className="grid grid-cols-3 px-7 place-content-center mt-3">

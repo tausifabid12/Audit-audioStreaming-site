@@ -5,9 +5,8 @@ import { BsFillPlayFill } from 'react-icons/bs';
 
 const MusicCard = ({ data }) => {
   const { dispatch, state } = useMusicData();
-  const { songName, imgUrl, audioUrl, artistName, albumName } = data;
+  const { songName, imgUrl, audioUrl, artistName, albumName, duration } = data;
 
-  console.log(state);
   return (
     <div className="w-full h-[310px] rounded-lg bg-transparent backdrop-blur-md group ">
       <div className="h-2/3 w-full relative">
@@ -17,7 +16,7 @@ const MusicCard = ({ data }) => {
           onClick={() => {
             dispatch({
               type: ActionTypes.AddCurrentSongInfo,
-              payload: { songName, artistName, audioUrl },
+              payload: { songName, artistName, audioUrl, duration },
             });
             dispatch({
               type: ActionTypes.IsSongPlaying,
