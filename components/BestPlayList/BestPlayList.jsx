@@ -53,19 +53,6 @@ const BestPlayList = () => {
               </div>
             </div>
           </div>
-          //   <div key={p.id} className="card w-full bg-black shadow-xl image-full">
-          //     <div className="w-full h-full rounded-xl relative">
-          //       <img src="/assets/hero.jpg" className="rounded-xl" alt="Shoes" />
-          //     </div>
-          //     <div className="card-body flex items-baseline justify-end p-5  bg-gradient-to-t from-black to-transparent rounded-xl">
-          //       <div className="text-white">
-          //         <h2 className="card-title">{p.name}</h2>
-          //         <p>
-          //           {p.total} songs | {p.favorite} favorites
-          //         </p>
-          //       </div>
-          //     </div>
-          //   </div>
         ))}
       </div>
     </section>

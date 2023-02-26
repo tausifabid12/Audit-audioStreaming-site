@@ -14,6 +14,7 @@ import TradingSongs from '../components/TradingSongs/TradingSongs';
 import BestPlayList from '../components/BestPlayList/BestPlayList';
 import Footer from '../components/Footer/Footer';
 import TopGenres from '../components/TopGenres/TopGenres';
+import PopularAlbum from '../components/PopularAlbum/PopularAlbum';
 
 export default function Home() {
   const { state } = useMusicData();
@@ -24,19 +25,19 @@ export default function Home() {
   return (
     <div className="bg-[#13131a]">
       <Layout>
-        <div className="h-auto ">
+        <div className="h-auto space-y-10">
           <Hero />
           <NewSongSec />
-          <div className="grid grid-cols-1 lg:grid-cols-2 space-y-10 mb-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2  mb-10">
             <UpcomingEvent />
             <SongsTab />
           </div>
           <NewSongSec />
           <HomeArtistSec />
+          <PopularAlbum />
           <TradingSongs />
           <BestPlayList />
           <TopGenres />
-          <Footer />
         </div>
       </Layout>
     </div>

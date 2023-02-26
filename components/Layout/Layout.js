@@ -5,7 +5,13 @@ import Player from '../Player/Player';
 import { motion } from 'framer-motion';
 import { BsFillHouseFill } from 'react-icons/bs';
 import { SiCoronaengine } from 'react-icons/si';
-import { RiAlbumFill, RiGpsFill, RiMenu3Fill } from 'react-icons/ri';
+import {
+  RiAlbumFill,
+  RiGpsFill,
+  RiMenu3Fill,
+  RiChatUploadFill,
+} from 'react-icons/ri';
+import Footer from '../Footer/Footer';
 
 const Layout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -28,16 +34,23 @@ const Layout = ({ children }) => {
       route: '/albums',
       icon: <RiAlbumFill />,
     },
+    {
+      id: 4,
+      name: 'uploadSong',
+      route: '/upload-songs',
+      icon: <RiChatUploadFill />,
+    },
   ];
 
   return (
     <>
       {/* <Navbar /> */}
-      <div className="drawer drawer-mobile">
+      <div className="drawer drawer-mobile bg-accent">
         <input id="sideBar" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content ">
-          {/* <!-- Page content here --> */}
+          {/*  <!---------------------------- Page content here ------------------------------------> */}
           {children}
+          <Footer />
           <label
             htmlFor="sideBar"
             className="btn btn-primary drawer-button lg:hidden"
@@ -50,14 +63,10 @@ const Layout = ({ children }) => {
 
           <motion.ul
             animate={{ width: isOpen ? '230px' : '80px' }}
-            className=" w-60 bg-black/30 backdrop-blur-md  h-screen text-white pt-6"
+            className=" w-60 bg-[#07070aef] backdrop-blur-md  h-screen text-white pt-6"
           >
             <li className="text-white flex items-center justify-between  space-x-3 px-2 mb-8">
               <motion.div
-                // animate={{
-                //   opacity: isOpen ? '1' : '0',
-                //   scale: isOpen ? [0, 1.1, 1] : [1, 0],
-                // }}
                 className={`${
                   isOpen ? 'flex ' : 'hidden'
                 }  text-white items-center space-x-3`}
@@ -74,7 +83,7 @@ const Layout = ({ children }) => {
                 <RiMenu3Fill />
               </p>
             </li>
-            {/* <!-- Sidebar content here --> */}
+            {/* <!----------------------------- Sidebar content here ------------------------------> */}
             {pages.map((page) => (
               <li>
                 <Link key={page.id} href={page.route}>
