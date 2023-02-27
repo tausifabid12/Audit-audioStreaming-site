@@ -1,12 +1,15 @@
 import React from 'react';
 
-const Hero = () => {
+const Hero = ({ img }) => {
   return (
     <section
       style={{
-        background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/assets/hero.jpg')`,
+        background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${
+          img ? img : '/assets/hero.jpg'
+        })`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
       }}
       className="h-80 w-full relative"
     >

@@ -35,15 +35,6 @@ const MusicProvider = ({ children }) => {
   );
 };
 
-// export async function getServerSideProp() {
-//   const res = await fetch('/api/songsData');
-//   const allSongData = await res.json();
-//   console.log(allSongData, res);
-//   return {
-//     props: { allSongData: allSongData },
-//   };
-// }
-
 export default MusicProvider;
 
 export const useMusicData = () => {

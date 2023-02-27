@@ -10,11 +10,10 @@ import {
 import app from '../firebase/firebase';
 import { v4 } from 'uuid';
 import { toast, Toaster } from 'react-hot-toast';
+import Hero from '../components/Hero/Hero';
 
 const uploadSongs = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [audioUrl, setAudioUrl] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const storage = getStorage(app);
   const {
@@ -27,9 +26,10 @@ const uploadSongs = () => {
   const onSubmit = (data, e) => {
     setUploadProgress(0);
     setLoading(true);
-    const { songName, albumName, artistName, lyrics } = data;
+    const { songName, albumName, artistName, category } = data;
 
     //********** uploading Image to imageBB *********** \\
+
     const image = data.image[0];
     const formData = new FormData();
     formData.append('image', image);
@@ -44,6 +44,7 @@ const uploadSongs = () => {
         console.log(imgUrl, 'imagebb');
         if (imgUrl) {
           //***********  uploading audio to firebase storage *********** \\
+
           const upAudio = data.audio[0];
           const audioRef = ref(storage, `auditAudio/${v4() + upAudio.name}`);
           const uploadTask = uploadBytesResumable(audioRef, upAudio);
@@ -74,7 +75,7 @@ const uploadSongs = () => {
                       songName,
                       albumName,
                       artistName,
-                      lyrics,
+                      category,
                       imgUrl,
                       audioUrl: downloadURL,
                     }),
@@ -98,17 +99,12 @@ const uploadSongs = () => {
   };
 
   return (
-    <div
-      style={{
-        backgroundImage: 'url(/bg-img.jpg)',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-      }}
-    >
+    <div>
       <Layout title="Upload-Song">
-        <section className="w-full px-16 ">
-          <h1 className="text-3xl font-bold text-white mb-10 mt-5">
-            Upload Your songs
+        <Hero />
+        <section className="w-full px-10 mb-16 -mt-12 relative z-20">
+          <h1 className="text-4xl font-bold text-white mb-10 mt-5">
+            Upload <span className="text-primary"> Your songs</span>
           </h1>
           <div className="w-full h-full bg-black/30 backdrop-blur-md p-20 rounded-xl">
             <form
@@ -172,7 +168,7 @@ const uploadSongs = () => {
                 <input
                   type="file"
                   accept="image/*"
-                  className="file-input file-input-bordered file-input-red w-full bg-transparent"
+                  className="file-input file-input-bordered file-input-primary border border-gray-700 file-input-red w-full bg-transparent"
                   {...register('image', { required: true })}
                 />
                 {errors.image && (
@@ -183,13 +179,13 @@ const uploadSongs = () => {
               </div>
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="label-text text-white">Lyrics</span>
+                  <span className="label-text text-white">Category</span>
                 </label>
                 <input
                   type="text"
                   placeholder="Lyrics"
                   className="input input-bordered w-full bg-transparent"
-                  {...register('lyrics')}
+                  {...register('category')}
                 />
               </div>
               <div className="form-control w-full ">

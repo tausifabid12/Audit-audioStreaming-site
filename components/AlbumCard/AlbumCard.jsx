@@ -1,9 +1,10 @@
+import Link from 'next/link';
 import React from 'react';
 import { FaDatabase } from 'react-icons/fa';
 
 const AlbumCard = ({ data }) => {
   return (
-    <div className="p-3">
+    <Link href={`/album/${data?.name}`} className="p-3">
       <div>
         <img src={data?.img} className="w-full h-[200px] rounded-2xl" alt="" />
       </div>
@@ -19,7 +20,7 @@ const AlbumCard = ({ data }) => {
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

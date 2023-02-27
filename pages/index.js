@@ -28,13 +28,14 @@ export default function Home() {
         <div className="h-auto space-y-10">
           <Hero />
           <NewSongSec />
+          <PopularAlbum />
+          <HomeArtistSec />
           <div className="grid grid-cols-1 lg:grid-cols-2  mb-10">
             <UpcomingEvent />
             <SongsTab />
           </div>
           <NewSongSec />
-          <HomeArtistSec />
-          <PopularAlbum />
+
           <TradingSongs />
           <BestPlayList />
           <TopGenres />

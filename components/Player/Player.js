@@ -47,10 +47,14 @@ const Player = () => {
     } else {
       return;
     }
-    const seconds = Math.floor(audioPlayer?.current.duration);
-    setTrackDuration(seconds);
+
     progressBar.current.max = state?.currentAudioInfo?.duration;
   }, [state?.currentAudioInfo?.audioUrl]);
+
+  useEffect(() => {
+    const seconds = Math.floor(audioPlayer?.current.duration);
+    setTrackDuration(seconds);
+  }, [audioPlayer?.current?.duration]);
 
   //tracing paly pause
   useEffect(() => {
@@ -109,7 +113,8 @@ const Player = () => {
         <p className="text-md text-white font-semibold">
           {trackDuration && !isNaN(trackDuration)
             ? calculateTime(trackDuration)
-            : state?.currentAudioInfo?.duration}
+            : '0:00'}
+          {/* state?.currentAudioInfo?.duration */}
         </p>
       </div>
       <div className="grid grid-cols-3 px-7 place-content-center mt-3">
