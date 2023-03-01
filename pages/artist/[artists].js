@@ -1,6 +1,8 @@
 import React from 'react';
+import { BsHeart, BsStarFill } from 'react-icons/bs';
 import FlatMusicCard from '../../components/FlatMusicCard/FlatMusicCard';
 import Layout from '../../components/Layout/Layout';
+import PageTop from '../../components/PageTop/PageTop';
 import clientPromise from '../../utilities/mongoDb-connect/mongoDb-connect';
 
 const Artist = ({ data }) => {
@@ -17,23 +19,37 @@ const Artist = ({ data }) => {
 
   return (
     <Layout>
-      <section>
-        {/* hero */}
-        <div style={bgStyle} className="h-80 w-full relative -z-10">
-          <div className="h-48 w-full absolute bottom-0 bg-gradient-to-t from-accent to-transparent "></div>
-          <div className="w-full h-full bg-black/30 backdrop-blur-2xl">
-            <div className="flex flex-col items-start justify-end h-full py-6 px-8">
-              <div className="relative z-30">
-                <img src={image} className="w-32 h-32 rounded-full" alt="" />
-                <h1 className="text-2xl text-center mt-2 text-white font-bold">
-                  {name}
-                </h1>
-              </div>
-            </div>
+      <PageTop />
+      {/* hero */}
+      <div className="card lg:card-side bg-transparent px-16 mb-16 -my-20">
+        <img src={image} className="w-full lg:w-72 rounded-xl" alt="Album" />
+
+        <div className="card-body text-white lg:py-3 lg:px-20">
+          <h2 className="text-4xl font-semibold text-primary">{name}</h2>
+          <p className="text-md text-gray-400">10 Album | 250 Songs</p>
+          <p className="text-gray-400">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed,
+            explicabo! Iure quo fugit laborum labore. Culpa ad provident eaque
+            repudiandae ut voluptas cum.
+          </p>
+          <div className="flex items-center space-x-11">
+            <span className="flex items-center space-x-2">
+              <BsHeart />
+              <p>4.9</p>
+            </span>
+            <span className="flex items-center space-x-2">
+              <BsStarFill className="text-yellow-500" />
+              <p>245</p>
+            </span>
           </div>
         </div>
+      </div>
+      <section>
         {/* body */}
-        <div className="min-h-screen relative">
+        <div className="min-h-screen relative px-10 overflow-hidden">
+          <h1 className="text-primary text-4xl font-bold py-4 relative z-20">
+            # Top Songs
+          </h1>
           <div className="h-48 w-full absolute -z-10 -top-10 bg-gradient-to-b from-transparent to-accent "></div>
           <div className="w-full min-h-screen px-7 py-12">
             {songs.map((song, i) => (
