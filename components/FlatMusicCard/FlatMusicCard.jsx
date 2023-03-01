@@ -23,8 +23,8 @@ const FlatMusicCard = ({ data }) => {
       <div className="flex items-center space-x-3">
         <div className="relative">
           <img src={imgUrl} className="w-16 h-16 rounded-md" alt="" />
-          <button className="flex items-center justify-center absolute z-10 bottom-3 right-3 transition-all duration-500 ease-linear  rounded-full bg-gray-800 opacity-0 group-hover:opacity-100">
-            <BsFillPlayFill className="text-3xl m-1 text-white" />
+          <button className="flex items-center justify-center absolute z-10 bottom-4 right-4 transition-all duration-200 ease-linear rounded-full bg-primary/60 backdrop-blur-sm opacity-0 group-hover:opacity-100">
+            <BsFillPlayFill size="35" className=" text-white" />
           </button>
         </div>
         <div>

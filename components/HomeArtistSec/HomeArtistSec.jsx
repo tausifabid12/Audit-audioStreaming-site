@@ -17,7 +17,7 @@ const HomeArtistSec = () => {
   }, []);
 
   return (
-    <section className="space-y-8 px-8 mb-10">
+    <section className="space-y-8 px-8 my-20">
       <h2 className="text-white font-bold text-4xl pb-5">
         Featured <span className="text-primary"> Artists</span>
       </h2>

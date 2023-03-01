@@ -42,10 +42,17 @@ const Layout = ({ children }) => {
     },
   ];
 
+  const style = {
+    background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/asset/team-bg.png')`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  };
+
   return (
     <>
       {/* <Navbar /> */}
-      <div className="drawer drawer-mobile bg-accent">
+      <div className="drawer drawer-mobile bg-accent ">
         <input id="sideBar" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content ">
           {/*  <!---------------------------- Page content here ------------------------------------> */}

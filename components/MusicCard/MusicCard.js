@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMusicData } from '../../Contexts/MusicProvider/MusicProvider';
 import { ActionTypes } from '../../state/MusicState/ActionTypes';
-import { BsFillPlayFill } from 'react-icons/bs';
+import { BsPlayCircle } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 
 const MusicCard = ({ data }) => {
@@ -9,11 +9,11 @@ const MusicCard = ({ data }) => {
   const { songName, imgUrl, audioUrl, artistName, albumName, duration } = data;
 
   return (
-    <div className="w-full h-[310px] rounded-lg cursor-pointer bg-transparent backdrop-blur-md group hover:brightness-75 ">
+    <div className="w-full h-[300px] rounded-lg cursor-pointer bg-transparent  group hover:brightness-75 ">
       <div className="h-2/3 w-full relative">
         <img src={imgUrl} className="w-full h-full rounded-2xl " alt="" />
         {/* play button */}
-        <div className="w-full h-full grid place-content-center absolute z-10 top-0 transition-all duration-500 ease-linear hover:bg-gradient-to-t from-[rgba(25,110,237,0.3)] to-transparent   rounded-2xl opacity-0 group-hover:opacity-100 border-b-4 border-primary">
+        <div className="w-full h-full grid place-content-center absolute z-10 top-0 transition-all duration-200 ease-linear   rounded-2xl opacity-0 group-hover:opacity-100 ">
           <button
             onClick={() => {
               dispatch({
@@ -25,9 +25,9 @@ const MusicCard = ({ data }) => {
                 payload: !state.isPlaying,
               });
             }}
-            className="flex items-center justify-center w-12  rounded-full bg-gray-800 "
+            className="flex items-center justify-center w-12  rounded-full bg-white/30 backdrop-blur-sm "
           >
-            <BsFillPlayFill className="text-3xl m-2 text-white" />
+            <BsPlayCircle size="50" className=" text-white" />
           </button>
         </div>
       </div>

@@ -6,7 +6,7 @@ const AlbumCard = ({ data }) => {
   return (
     <Link href={`/album/${data?.name}`} className="p-3">
       <div>
-        <img src={data?.img} className="w-full h-[200px] rounded-2xl" alt="" />
+        <img src={data?.img} className="w-full h-[250px] rounded-2xl" alt="" />
       </div>
       <div className="mt-4 px-2 space-y-3">
         <p className="flex items-center  text-sm text-gray-400">

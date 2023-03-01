@@ -9,7 +9,12 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        GreateVibes: ['Great Vibes', 'cursive'],
+        Kaushan: ['Kaushan Script', 'cursive'],
+      }, //end of fontFamily
+    },
   },
   daisyui: {
     themes: [

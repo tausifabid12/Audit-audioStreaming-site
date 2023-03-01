@@ -19,26 +19,39 @@ import PopularAlbum from '../components/PopularAlbum/PopularAlbum';
 export default function Home() {
   const { state } = useMusicData();
 
-  if (state.loading) {
-    return <p className="text-4xl font-bold">loading....</p>;
-  }
+  // if (state.loading) {
+  //   return <p className="text-4xl font-bold">loading....</p>;
+  // }
+  const img = null;
   return (
-    <div className="bg-[#13131a]">
+    <div className="">
       <Layout>
-        <div className="h-auto space-y-10">
+        <div className="h-auto pb-28">
           <Hero />
-          <NewSongSec />
-          <PopularAlbum />
-          <HomeArtistSec />
-          <div className="grid grid-cols-1 lg:grid-cols-2  mb-10">
-            <UpcomingEvent />
-            <SongsTab />
-          </div>
-          <NewSongSec />
-
-          <TradingSongs />
-          <BestPlayList />
-          <TopGenres />
+          <section
+            style={{
+              background: `linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(${
+                img ? img : '/assets/banner-bg.png'
+              })`,
+              backgroundPosition: 'left bottom',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundAttachment: 'fixed',
+            }}
+            className="space-y-24"
+          >
+            <NewSongSec />
+            <PopularAlbum />
+            <HomeArtistSec />
+            <div className="grid grid-cols-1 lg:grid-cols-2  mb-10">
+              <UpcomingEvent />
+              <SongsTab />
+            </div>
+            <NewSongSec />
+            <TradingSongs />
+            <BestPlayList />
+            <TopGenres />
+          </section>
         </div>
       </Layout>
     </div>
