@@ -4,18 +4,8 @@ import Layout from '../components/Layout/Layout';
 import PageTop from '../components/PageTop/PageTop';
 import PopularAlbum from '../components/PopularAlbum/PopularAlbum';
 import TradingSongs from '../components/TradingSongs/TradingSongs';
-import { useMusicData } from '../Contexts/MusicProvider/MusicProvider';
-import { ActionTypes } from '../state/MusicState/ActionTypes';
 
-const Albums = ({ albumData }) => {
-  const { dispatch } = useMusicData();
-
-  useEffect(() => {
-    if (albumData?.success) {
-      dispatch({ type: ActionTypes.AddAlbumData, payload: albumData?.data });
-    }
-  }, [albumData, albumData?.success]);
-
+const Albums = () => {
   return (
     <Layout>
       <section className="w-full">
@@ -30,18 +20,5 @@ const Albums = ({ albumData }) => {
     </Layout>
   );
 };
-
-export async function getStaticProps() {
-  const res = await fetch(
-    'https://audit-audio-e69qzaxzn-tausifabid12.vercel.app/api/getAlbum'
-  );
-  const albumData = await res.json();
-
-  return {
-    props: {
-      albumData: albumData,
-    },
-  };
-}
 
 export default Albums;

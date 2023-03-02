@@ -13,19 +13,26 @@ import { motion, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { ActionTypes } from '../state/MusicState/ActionTypes';
 
-export default function Home({ songsData }) {
+export default function Home({ data }) {
   const { state, dispatch } = useMusicData();
   const eventRef = useRef(null);
   const isInView = useInView(eventRef);
 
   useEffect(() => {
-    if (songsData?.success) {
-      dispatch({ type: ActionTypes.SongData, payload: songsData?.data });
+    if (data?.songsData?.success) {
+      dispatch({ type: ActionTypes.SongData, payload: data?.songsData?.data });
       dispatch({ type: ActionTypes.Loading, payload: false });
     } else {
       dispatch({ type: ActionTypes.Loading, payload: true });
     }
-  }, [songsData, songsData?.success]);
+
+    if (data?.albumData?.success) {
+      dispatch({
+        type: ActionTypes.AddAlbumData,
+        payload: data?.albumData?.data,
+      });
+    }
+  }, [data?.songsData, data?.songsData?.success, data?.albumData?.success]);
 
   if (state.loading) {
     return <p className="text-4xl font-bold">loading....</p>;
@@ -80,14 +87,23 @@ export default function Home({ songsData }) {
 }
 
 export async function getStaticProps() {
+  //getting song data
   const res = await fetch(
     'https://audit-audio-e69qzaxzn-tausifabid12.vercel.app/api/songsData'
   );
   const songsData = await res.json();
 
+  // getting album data
+  const albumRes = await fetch(
+    'https://audit-audio-e69qzaxzn-tausifabid12.vercel.app/api/getAlbum'
+  );
+  const albumData = await albumRes.json();
+
+  const data = { songsData, albumData };
+
   return {
     props: {
-      songsData: songsData,
+      data: data,
     },
   };
 }
