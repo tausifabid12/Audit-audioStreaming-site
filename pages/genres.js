@@ -10,7 +10,7 @@ const Genres = () => {
     <Layout>
       <section className="w-full   ">
         <PageTop />
-        <div className="-my-28 relative z-20">
+        <div className="-my-24 relative z-20">
           <TopGenres />
         </div>
         <div className="mt-48 mb-20">
