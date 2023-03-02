@@ -1,27 +1,35 @@
 import Hero from '../components/Hero/Hero';
 import Layout from '../components/Layout/Layout';
-import MusicCard from '../components/MusicCard/MusicCard';
-import Player from '../components/Player/Player';
 import { useMusicData } from '../Contexts/MusicProvider/MusicProvider';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import NewSongSec from '../components/NewSongSec/NewSongSec';
 import UpcomingEvent from '../components/UpcomingEvent/UpcomingEvent';
-import FlatMusicCard from '../components/FlatMusicCard/FlatMusicCard';
 import SongsTab from '../components/Songstab/SongsTab';
-import ArtistCard from '../components/ArtistCard/ArtistCard';
 import HomeArtistSec from '../components/HomeArtistSec/HomeArtistSec';
 import TradingSongs from '../components/TradingSongs/TradingSongs';
 import BestPlayList from '../components/BestPlayList/BestPlayList';
-import Footer from '../components/Footer/Footer';
 import TopGenres from '../components/TopGenres/TopGenres';
 import PopularAlbum from '../components/PopularAlbum/PopularAlbum';
+import { motion, useInView } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { ActionTypes } from '../state/MusicState/ActionTypes';
 
-export default function Home() {
-  const { state } = useMusicData();
+export default function Home({ songsData }) {
+  const { state, dispatch } = useMusicData();
+  const eventRef = useRef(null);
+  const isInView = useInView(eventRef);
 
-  // if (state.loading) {
-  //   return <p className="text-4xl font-bold">loading....</p>;
-  // }
+  useEffect(() => {
+    if (songsData?.success) {
+      dispatch({ type: ActionTypes.SongData, payload: songsData?.data });
+      dispatch({ type: ActionTypes.Loading, payload: false });
+    } else {
+      dispatch({ type: ActionTypes.Loading, payload: true });
+    }
+  }, [songsData, songsData?.success]);
+
+  if (state.loading) {
+    return <p className="text-4xl font-bold">loading....</p>;
+  }
   const img = null;
   return (
     <div className="">
@@ -43,10 +51,23 @@ export default function Home() {
             <NewSongSec />
             <PopularAlbum />
             <HomeArtistSec />
-            <div className="grid grid-cols-1 lg:grid-cols-2  mb-10">
-              <UpcomingEvent />
-              <SongsTab />
-            </div>
+            <motion.div
+              ref={eventRef}
+              className="grid grid-cols-1 lg:grid-cols-2  mb-10 overflow-hidden"
+            >
+              <motion.div
+                animate={{ x: isInView ? 0 : -30 }}
+                transition={{ type: 'spring', stiffness: 70 }}
+              >
+                <UpcomingEvent />
+              </motion.div>
+              <motion.div
+                animate={{ x: isInView ? 0 : 30 }}
+                transition={{ type: 'spring', stiffness: 70 }}
+              >
+                <SongsTab />
+              </motion.div>
+            </motion.div>
             <NewSongSec />
             <TradingSongs />
             <BestPlayList />
@@ -56,4 +77,17 @@ export default function Home() {
       </Layout>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch(
+    'https://audit-audio-e69qzaxzn-tausifabid12.vercel.app/api/songsData'
+  );
+  const songsData = await res.json();
+
+  return {
+    props: {
+      songsData: songsData,
+    },
+  };
 }

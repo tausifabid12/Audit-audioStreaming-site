@@ -22,7 +22,7 @@ const Artist = ({ data }) => {
       <PageTop />
       {/* hero */}
       <div className="card lg:card-side bg-transparent px-16 mb-16 -my-20">
-        <img src={image} className="w-full lg:w-72 rounded-xl" alt="Album" />
+        <img src={image} className="w-full lg:w-72 rounded-xl " alt="Album" />
 
         <div className="card-body text-white lg:py-3 lg:px-20">
           <h2 className="text-4xl font-semibold text-primary">{name}</h2>
@@ -35,11 +35,11 @@ const Artist = ({ data }) => {
           <div className="flex items-center space-x-11">
             <span className="flex items-center space-x-2">
               <BsHeart />
-              <p>4.9</p>
+              <p>100 M</p>
             </span>
             <span className="flex items-center space-x-2">
               <BsStarFill className="text-yellow-500" />
-              <p>245</p>
+              <p>4.7</p>
             </span>
           </div>
         </div>
@@ -85,7 +85,7 @@ export async function getStaticProps(context) {
       image: artistData.img,
       songs: albumDetails,
     };
-    console.log(params.artists);
+
     return {
       props: {
         data: data,
@@ -97,7 +97,9 @@ export async function getStaticProps(context) {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3000/api/songsData');
+  const res = await fetch(
+    'https://audit-audio-e69qzaxzn-tausifabid12.vercel.app/api/songsData'
+  );
   const songsData = await res.json();
 
   const paths = songsData?.data?.map((data) => {

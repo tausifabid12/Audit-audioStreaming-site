@@ -4,4 +4,5 @@ export const ActionTypes = {
   AddCurrentSongInfo: 'AddCurrentSongInfo',
   IsSongPlaying: 'IsSongPlaying',
   SongData: 'SongData',
+  AddAlbumData: 'AddAlbumData',
 };

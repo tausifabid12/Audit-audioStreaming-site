@@ -4,6 +4,7 @@ export const initialState = {
   loading: false,
   error: false,
   songData: [],
+  albumData: [],
   currentAudioInfo: {},
   isPlaying: false,
 };
@@ -19,6 +20,11 @@ export const musicReducer = (state, action) => {
       return {
         ...state,
         songData: action.payload,
+      };
+    case ActionTypes.AddAlbumData:
+      return {
+        ...state,
+        albumData: action.payload,
       };
 
     case ActionTypes.AddCurrentSongInfo:

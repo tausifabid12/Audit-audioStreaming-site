@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <section
       style={{
-        background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/assets/footer.jpg')`,
+        background: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('/assets/footer.jpg')`,
         backgroundPosition: 'top',
         backgroundSize: 'cover',
       }}

@@ -1,41 +1,77 @@
 import React from 'react';
-import Search from '../Search/Search';
+import { motion, AnimatePresence, useViewportScroll } from 'framer-motion';
 import TopNav from '../TopNav/TopNav';
 
 const Hero = ({ img }) => {
+  const { scrollYProgress } = useViewportScroll();
+  // style={{  }}
   return (
-    <section
-      style={{
-        background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${
-          img ? img : '/assets/bg-01.jpg'
-        })`,
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-      }}
-      className="h-[630px] w-full relative"
-    >
-      {/* <Search /> */}
-      <div className="px-5 pt-5">
-        <TopNav />
-      </div>
+    <AnimatePresence>
+      <div className="h-[630px]">
+        <motion.section
+          animate={{ height: [0, 630] }}
+          transition={{ duration: 0.6 }}
+          style={{
+            background: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${
+              img ? img : '/assets/bg-01.jpg'
+            })`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+          className="h-[630px] w-full relative"
+        >
+          {/* <Search /> */}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 40, delay: 0.8 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="px-5 pt-5"
+          >
+            <TopNav />
+          </motion.div>
 
-      <div className="w-full h-full">
-        <div className="w-[90%] h-full flex flex-col space-y-8 items-start pt-36 px-8">
-          <h1 className="text-white text-6xl font-extrabold font-GreateVibes ">
-            ENJOY BEST MUSIC
-          </h1>
-          <h1 className="text-white text-5xl font-extrabold font-GreateVibes ">
-            WITH AUDIT
-          </h1>
-          {/* <img src="/assets/name-bottom.png" className="w-[70%] h-7" alt="" /> */}
-          <button className="text-white font-semibold px-8 py-2 border-2 border-white rounded-md">
-            Explore
-          </button>
-        </div>
+          <div className="w-full h-full">
+            <div className="w-[90%] h-full flex flex-col space-y-8 items-start pt-36 px-8">
+              <motion.h1
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: 'spring', stiffness: 40, delay: 0.6 }}
+                exit={{ opacity: 0, x: -50 }}
+                className="text-white text-6xl font-extrabold font-GreateVibes "
+              >
+                ENJOY BEST MUSIC
+              </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, x: 150 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: 'spring', stiffness: 40, delay: 0.6 }}
+                exit={{ opacity: 0, x: 150 }}
+                className="text-white text-5xl font-extrabold font-GreateVibes "
+              >
+                WITH AUDIT
+              </motion.h1>
+              <img
+                src="/assets/name-bottom.png"
+                className="w-[30%] h-7"
+                alt=""
+              />
+              <motion.button
+                initial={{ opacity: 0, y: 150 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: 'spring', stiffness: 40, delay: 0.6 }}
+                exit={{ opacity: 0, y: 150 }}
+                className="text-white font-semibold px-8 py-2 border-2 border-white rounded-md"
+              >
+                Explore
+              </motion.button>
+            </div>
+          </div>
+          <div className="h-56 w-full absolute bottom-0 bg-gradient-to-t from-[#121217] to-transparent "></div>
+        </motion.section>
       </div>
-      <div className="h-56 w-full absolute bottom-0 bg-gradient-to-t from-[#121217] to-transparent "></div>
-    </section>
+    </AnimatePresence>
   );
 };
 

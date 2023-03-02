@@ -16,18 +16,6 @@ const MusicContext = createContext();
 const MusicProvider = ({ children }) => {
   const [state, dispatch] = useReducer(musicReducer, initialState);
 
-  useEffect(() => {
-    dispatch({ type: ActionTypes.Loading, payload: true });
-    fetch('/api/songsData')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.success) {
-          dispatch({ type: ActionTypes.SongData, payload: data?.data });
-          dispatch({ type: ActionTypes.Loading, payload: false });
-        }
-      });
-  }, []);
-
   const value = { state, dispatch };
 
   return (

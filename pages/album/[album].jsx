@@ -7,7 +7,6 @@ import PageTop from '../../components/PageTop/PageTop';
 import clientPromise from '../../utilities/mongoDb-connect/mongoDb-connect';
 
 const Album = ({ albumData }) => {
-  console.log(albumData.songs);
   return (
     <Layout>
       <div>
@@ -32,11 +31,11 @@ const Album = ({ albumData }) => {
             <div className="flex items-center space-x-11">
               <span className="flex items-center space-x-2">
                 <BsHeart />
-                <p>4.9</p>
+                <p>255 M</p>
               </span>
               <span className="flex items-center space-x-2">
                 <BsStarFill className="text-yellow-500" />
-                <p>245</p>
+                <p>4.9</p>
               </span>
             </div>
           </div>
@@ -86,7 +85,9 @@ export async function getStaticProps(context) {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3000/api/songsData');
+  const res = await fetch(
+    'https://audit-audio-e69qzaxzn-tausifabid12.vercel.app/api/songsData'
+  );
   const songsData = await res.json();
 
   const paths = songsData?.data?.map((data) => {
