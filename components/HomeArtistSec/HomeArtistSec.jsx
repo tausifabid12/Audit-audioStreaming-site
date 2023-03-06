@@ -45,7 +45,7 @@ const HomeArtistSec = () => {
         ref={artistRef}
         variants={container}
         animate={isInView ? 'visible' : 'hidden'}
-        className="grid grid-cols-2 lg:grid-cols-5"
+        className="grid grid-cols-2 lg:grid-cols-5 gap-3"
       >
         {data?.map((d) => (
           <motion.div
@@ -67,14 +67,3 @@ const HomeArtistSec = () => {
 };
 
 export default HomeArtistSec;
-
-// export async function getStaticProps() {
-//   const res = await fetch('/api/getArtists');
-//   const artistsData = await res.json();
-
-//   console.log(artistsData);
-
-//   return {
-//     props: { artistsData },
-//   };
-// }

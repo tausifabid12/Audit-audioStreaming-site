@@ -29,7 +29,7 @@ const TopGenres = () => {
         ref={topGenresRef}
         variants={container}
         animate={isInView ? 'visible' : 'hidden'}
-        className="grid grid-cols-6 grid-rows-2 gap-4 h-96"
+        className="grid grid-cols-1 lg:grid-cols-6 lg:grid-rows-2 gap-4 h-96"
       >
         <motion.div
           variants={animateCat}
@@ -43,7 +43,7 @@ const TopGenres = () => {
             backgroundPosition: 'bottom',
             backgroundSize: 'cover',
           }}
-          className="col-span-2 row-span-2 rounded-2xl flex items-end p-5"
+          className="lg:col-span-2 row-span-2 rounded-2xl flex items-end p-5 h-52 lg:h-auto"
         >
           <div className="text-white font-semibold ">
             <h5 className="text-2xl">Rock Music</h5>
@@ -62,7 +62,7 @@ const TopGenres = () => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
           }}
-          className="rounded-2xl flex items-end p-5"
+          className="rounded-2xl flex items-end p-5 h-52 lg:h-auto"
         >
           <div className="text-white font-semibold ">
             <h5 className="text-lg">Classical </h5>
@@ -81,7 +81,7 @@ const TopGenres = () => {
             backgroundPosition: 'left',
             backgroundSize: 'cover',
           }}
-          className="col-span-2  rounded-2xl flex items-end p-5"
+          className="lg:col-span-2  rounded-2xl flex items-end p-5 h-52 lg:h-auto"
         >
           <div className="text-white font-semibold ">
             <h5 className="text-2xl">HipHop Music</h5>
@@ -100,7 +100,7 @@ const TopGenres = () => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
           }}
-          className="row-span-2  rounded-2xl flex items-end p-5"
+          className="row-span-2  rounded-2xl flex items-end p-5 h-52 lg:h-auto"
         >
           <div className="text-white font-semibold ">
             <h5 className="text-2xl">Solo Music</h5>
@@ -119,7 +119,7 @@ const TopGenres = () => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
           }}
-          className="col-span-2  rounded-2xl flex items-end p-5"
+          className="lg:col-span-2  rounded-2xl flex items-end p-5 h-52 lg:h-auto"
         >
           <div className="text-white font-semibold ">
             <h5 className="text-2xl">Metal Music</h5>
@@ -138,7 +138,7 @@ const TopGenres = () => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
           }}
-          className="rounded-2xl flex items-end p-5"
+          className="rounded-2xl flex items-end p-5 h-52 lg:h-auto"
         >
           <div className="text-white font-semibold ">
             <h5 className="text-lg">Romantic </h5>

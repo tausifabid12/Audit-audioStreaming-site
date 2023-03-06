@@ -10,14 +10,22 @@ const SongsTab = () => {
         <a
           rel="noopener noreferrer"
           href="#"
-          className="px-5 py-1 font-semibold border-b-2 border-primary text-primary"
+          className="text-sm lg:text-md px-5 py-1 font-semibold border-b-2 border-primary text-primary"
         >
           Recent Songs
         </a>
-        <a rel="noopener noreferrer" href="#" className="px-5 py-1 semibold">
+        <a
+          rel="noopener noreferrer"
+          href="#"
+          className="text-sm lg:text-md px-5 py-1 semibold"
+        >
           Treading
         </a>
-        <a rel="noopener noreferrer" href="#" className="px-5 py-1 semibold">
+        <a
+          rel="noopener noreferrer"
+          href="#"
+          className="text-sm lg:text-md px-5 py-1 semibold"
+        >
           International
         </a>
       </div>

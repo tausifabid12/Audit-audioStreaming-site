@@ -4,10 +4,10 @@ import TopNav from '../TopNav/TopNav';
 
 const Hero = ({ img }) => {
   const { scrollYProgress } = useViewportScroll();
-  // style={{  }}
+
   return (
     <AnimatePresence>
-      <div className="h-[630px]">
+      <div className=" h-auto lg:h-[630px] overflow-hidden">
         <motion.section
           animate={{ height: [0, 630] }}
           transition={{ duration: 0.6 }}
@@ -33,13 +33,13 @@ const Hero = ({ img }) => {
           </motion.div>
 
           <div className="w-full h-full">
-            <div className="w-[90%] h-full flex flex-col space-y-8 items-start pt-36 px-8">
+            <div className="w-full lg:w-[90%] h-full flex flex-col space-y-8 items-start pt-36 px-4 lg:px-8">
               <motion.h1
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -150 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: 'spring', stiffness: 40, delay: 0.6 }}
-                exit={{ opacity: 0, x: -50 }}
-                className="text-white text-6xl font-extrabold font-GreateVibes "
+                exit={{ opacity: 0, x: -150 }}
+                className="text-white text-5xl lg:text-6xl text-center lg:text-left font-extrabold font-GreateVibes "
               >
                 ENJOY BEST MUSIC
               </motion.h1>
@@ -48,13 +48,13 @@ const Hero = ({ img }) => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: 'spring', stiffness: 40, delay: 0.6 }}
                 exit={{ opacity: 0, x: 150 }}
-                className="text-white text-5xl font-extrabold font-GreateVibes "
+                className="hidden lg:block text-white text-4xl lg:text-5xl text-center lg:text-left font-extrabold font-GreateVibes "
               >
                 WITH AUDIT
               </motion.h1>
               <img
                 src="/assets/name-bottom.png"
-                className="w-[30%] h-7"
+                className="w-[30%] h-7 hidden lg:block"
                 alt=""
               />
               <motion.button
@@ -62,7 +62,7 @@ const Hero = ({ img }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', stiffness: 40, delay: 0.6 }}
                 exit={{ opacity: 0, y: 150 }}
-                className="text-white font-semibold px-8 py-2 border-2 border-white rounded-md"
+                className="text-white font-semibold px-8 py-2 border-2 mx-auto lg:mx-0 border-white rounded-md"
               >
                 Explore
               </motion.button>

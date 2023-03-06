@@ -9,7 +9,7 @@ const MusicCard = ({ data }) => {
   const { songName, imgUrl, audioUrl, artistName, albumName, duration } = data;
 
   return (
-    <div className="w-full h-[300px] rounded-lg cursor-pointer bg-transparent  group hover:brightness-75 ">
+    <div className="w-full h-52 lg:h-[300px] rounded-lg cursor-pointer bg-transparent  group hover:brightness-75 ">
       <div className="h-2/3 w-full relative">
         <img src={imgUrl} className="w-full h-full rounded-2xl " alt="" />
         {/* play button */}
@@ -32,8 +32,12 @@ const MusicCard = ({ data }) => {
         </div>
       </div>
       <div className="pt-4">
-        <h2 className="text-md font-semibold text-white ">{songName}</h2>
-        <h2 className="text-xs font-semibold text-white/50 ">{albumName}</h2>
+        <h2 className="text-sm lg:text-md font-semibold text-white ">
+          {songName}
+        </h2>
+        <h2 className="hidden lg:block text-xs font-semibold text-white/50 ">
+          {albumName}
+        </h2>
       </div>
     </div>
   );

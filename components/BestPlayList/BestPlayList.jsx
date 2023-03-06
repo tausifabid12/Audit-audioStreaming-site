@@ -59,7 +59,7 @@ const BestPlayList = () => {
         ref={playListRef}
         variants={container}
         animate={isInView ? 'visible' : 'hidden'}
-        className="grid grid-cols-4 gap-4"
+        className="grid grid-cols-1 lg:grid-cols-4 gap-4"
       >
         {playList.map((p) => (
           <motion.div
