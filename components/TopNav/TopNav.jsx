@@ -59,8 +59,8 @@ const TopNav = () => {
           </button>
           <div className="dropdown dropdown-end ">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src="/assets/user.jpg" />
+              <div className="w-10 rounded-full bg-primary">
+                <img src="/assets/avatar.png" />
               </div>
             </label>
             <ul
