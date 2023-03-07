@@ -3,8 +3,6 @@ import { motion, AnimatePresence, useViewportScroll } from 'framer-motion';
 import TopNav from '../TopNav/TopNav';
 
 const Hero = ({ img }) => {
-  const { scrollYProgress } = useViewportScroll();
-
   return (
     <AnimatePresence>
       <div className=" h-auto lg:h-[630px] overflow-hidden">
@@ -27,7 +25,7 @@ const Hero = ({ img }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 40, delay: 0.8 }}
             exit={{ opacity: 0, y: -50 }}
-            className="px-5 pt-5"
+            className="px-0 pt-0"
           >
             <TopNav />
           </motion.div>
@@ -48,7 +46,7 @@ const Hero = ({ img }) => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: 'spring', stiffness: 40, delay: 0.6 }}
                 exit={{ opacity: 0, x: 150 }}
-                className="hidden lg:block text-white text-4xl lg:text-5xl text-center lg:text-left font-extrabold font-GreateVibes "
+                className="hidden md:block text-white text-4xl lg:text-5xl text-center lg:text-left font-extrabold font-GreateVibes "
               >
                 WITH AUDIT
               </motion.h1>
@@ -62,7 +60,7 @@ const Hero = ({ img }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: 'spring', stiffness: 40, delay: 0.6 }}
                 exit={{ opacity: 0, y: 150 }}
-                className="text-white font-semibold px-8 py-2 border-2 mx-auto lg:mx-0 border-white rounded-md"
+                className="text-white font-semibold px-8 py-2 border-2 mx-auto md:mx-0 border-white rounded-md"
               >
                 Explore
               </motion.button>

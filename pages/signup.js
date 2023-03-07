@@ -4,16 +4,16 @@ import { FaTimesCircle, FaTimes } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { RiGpsFill, RiMenu3Fill } from 'react-icons/ri';
 import { useAuth } from '../Contexts/AuthProvider/AuthProvider';
 import Layout from '../components/Layout/Layout';
 import TopNav from '../components/TopNav/TopNav';
-import { RiGpsFill, RiMenu3Fill } from 'react-icons/ri';
 import Link from 'next/link';
 
-const Login = () => {
+const SignUp = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login, socialLogin } = useAuth();
+  const { createUser, socialLogin } = useAuth();
   const googleProvider = new GoogleAuthProvider();
   const {
     register,
@@ -24,7 +24,7 @@ const Login = () => {
 
   const handleAuthentication = (data, e) => {
     setLoading(true);
-    login(data.email, data.password)
+    createUser(data.email, data.password)
       .then((result) => {
         if (result?.user?.uid) {
           setError('');
@@ -70,14 +70,14 @@ const Login = () => {
         className={` w-full min-h-screen pb-28  rounded-lg`}
       >
         {/* <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 40, delay: 0.8 }}
-          exit={{ opacity: 0, y: -50 }}
-          className="px-5 pt-3"
-        >
-          <TopNav />
-        </motion.div> */}
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: 'spring', stiffness: 40, delay: 0.8 }}
+        exit={{ opacity: 0, y: -50 }}
+        className="px-5 pt-3"
+      >
+        <TopNav />
+      </motion.div> */}
         <div className="border-b border-white/5 ">
           <TopNav />
         </div>
@@ -99,7 +99,7 @@ const Login = () => {
                 </div>
               </Link>
               <p className="text-white text-center font-semibold mt-3">
-                Sign In to access your account
+                Sign Up to access your account
               </p>
               <p className=" text-red-500 mt-1 text-center">
                 {error.slice(10, error.length)}
@@ -154,7 +154,7 @@ const Login = () => {
                   <button
                     className={`${loading ? 'loading' : ''}  btn btn-primary `}
                   >
-                    Sign In
+                    Sign Up
                   </button>
                 </div>
                 <div className="flex items-center pt-4 space-x-1">
@@ -216,4 +216,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

@@ -40,7 +40,7 @@ const NewSongSec = () => {
         ref={ref}
         variants={container}
         animate={isInView ? 'visible' : 'hidden'}
-        className="h-full grid grid-cols-2 lg:grid-cols-5 gap-5 "
+        className="h-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 "
       >
         {state?.songData.length &&
           state?.songData.slice(0, 5).map((data) => (

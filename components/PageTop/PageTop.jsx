@@ -12,7 +12,7 @@ const PageTop = () => {
       }}
       className="h-[400px] w-full relative"
     >
-      <div className="px-5 pt-5 ">
+      <div className=" ">
         <TopNav />
       </div>
 

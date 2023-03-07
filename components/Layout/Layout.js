@@ -6,21 +6,30 @@ import { motion } from 'framer-motion';
 import { BsFillHouseFill } from 'react-icons/bs';
 import { SiCoronaengine } from 'react-icons/si';
 import {
+  VscSignIn,
+  VscSignOut,
+  VscCloudUpload,
+  VscFileSubmodule,
+  VscHome,
+} from 'react-icons/vsc';
+import {
   RiAlbumFill,
   RiGpsFill,
   RiMenu3Fill,
   RiChatUploadFill,
 } from 'react-icons/ri';
 import Footer from '../Footer/Footer';
+import { FaTimesCircle } from 'react-icons/fa';
 
 const Layout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const [isSmall, SetIsSmall] = useState(false);
   const pages = [
     {
       id: 1,
       name: 'home',
       route: '/',
-      icon: <BsFillHouseFill />,
+      icon: <VscHome />,
     },
     {
       id: 2,
@@ -32,14 +41,26 @@ const Layout = ({ children }) => {
       id: 3,
       name: 'albums',
       route: '/albums',
-      icon: <RiAlbumFill />,
+      icon: <VscFileSubmodule />,
     },
     {
       id: 4,
       name: 'uploadSong',
       route: '/upload-songs',
-      icon: <RiChatUploadFill />,
+      icon: <VscCloudUpload />,
     },
+    // {
+    //   id: 5,
+    //   name: 'logIn',
+    //   route: '/login',
+    //   icon: <VscSignIn />,
+    // },
+    // {
+    //   id: 6,
+    //   name: 'SignUp',
+    //   route: '/signup',
+    //   icon: <VscSignOut />,
+    // },
   ];
 
   const style = {
@@ -53,25 +74,19 @@ const Layout = ({ children }) => {
     <>
       {/* <Navbar /> */}
       <div className="drawer drawer-mobile bg-accent overflow-hidden">
-        <input id="sideBar" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content ">
-          {/*  <!---------------------------- Page content here ------------------------------------> */}
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content">
+          {/* <!-- Page content here --> */}
           {children}
           <Footer />
-          <label
-            htmlFor="sideBar"
-            className="btn btn-primary drawer-button lg:hidden"
-          >
-            Open drawer
-          </label>
         </div>
-        <div className="z-50">
-          <label htmlFor="sideBar" className="drawer-overlay"></label>
-
-          <motion.ul
-            animate={{ width: isOpen ? '230px' : '80px' }}
-            className=" w-60 bg-[#07070aef] backdrop-blur-md  h-screen text-white pt-6"
-          >
+        <motion.div
+          animate={{ width: isOpen ? '230px' : '75px' }}
+          className="drawer-side"
+        >
+          <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+          <ul className=" w-60 bg-[#07070aef] backdrop-blur-md  h-screen text-white pt-6">
+            {/* <!-- Sidebar content here --> */}
             <li className="text-white flex items-center justify-between  space-x-3 px-2 mb-8">
               <motion.div
                 className={`${
@@ -85,12 +100,18 @@ const Layout = ({ children }) => {
               </motion.div>
               <p
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-2xl cursor-pointer"
+                className="hidden lg:block text-2xl cursor-pointer pr-2"
               >
                 <RiMenu3Fill />
               </p>
+              <label
+                htmlFor="my-drawer-2"
+                className="text-white drawer-button lg:hidden pr-2"
+              >
+                <FaTimesCircle size={25} />
+              </label>
             </li>
-            {/* <!----------------------------- Sidebar content here ------------------------------> */}
+            {/* side menus */}
             {pages.map((page) => (
               <li>
                 <Link key={page.id} href={page.route}>
@@ -113,8 +134,8 @@ const Layout = ({ children }) => {
                 </Link>
               </li>
             ))}
-          </motion.ul>
-        </div>
+          </ul>
+        </motion.div>
       </div>
 
       <Player />

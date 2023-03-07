@@ -45,7 +45,7 @@ const HomeArtistSec = () => {
         ref={artistRef}
         variants={container}
         animate={isInView ? 'visible' : 'hidden'}
-        className="grid grid-cols-2 lg:grid-cols-5 gap-3"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3"
       >
         {data?.map((d) => (
           <motion.div

@@ -40,7 +40,7 @@ const PopularAlbum = () => {
   };
 
   return (
-    <section className="my-14 px-8 hidden lg:block">
+    <section className="my-14 px-8 hidden md:block">
       <h2 className="text-white font-bold text-4xl pb-8">
         Popular <span className="text-primary">Albums</span>
       </h2>
