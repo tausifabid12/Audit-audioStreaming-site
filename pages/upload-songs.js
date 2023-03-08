@@ -11,6 +11,7 @@ import app from '../firebase/firebase';
 import { v4 } from 'uuid';
 import { toast, Toaster } from 'react-hot-toast';
 import Hero from '../components/Hero/Hero';
+import TopNav from '../components/TopNav/TopNav';
 
 const uploadSongs = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -99,8 +100,19 @@ const uploadSongs = () => {
   return (
     <div>
       <Layout title="Upload-Song">
-        <Hero />
-        <section className="w-full px-10 mb-16 -mt-12 relative z-20">
+        <div className="border-b border-white/5 ">
+          <TopNav />
+        </div>
+        <section
+          style={{
+            background: `linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(${'/assets/banner-bg.png'})`,
+            backgroundPosition: 'left',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+          }}
+          className="w-full px-10 pt-20 pb-28 -mt-12 relative z-20 "
+        >
           <h1 className="text-4xl font-bold text-white mb-10 mt-5">
             Upload <span className="text-primary"> Your songs</span>
           </h1>
@@ -177,7 +189,7 @@ const uploadSongs = () => {
               </div>
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="label-text text-white">Category</span>
+                  <span className="label-text text-white">Duration</span>
                 </label>
                 <input
                   type="text"
