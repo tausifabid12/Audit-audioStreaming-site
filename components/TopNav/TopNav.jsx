@@ -1,23 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../Contexts/AuthProvider/AuthProvider';
 import { BiSearchAlt } from 'react-icons/bi';
 import { AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
+import { useMusicData } from '../../Contexts/MusicProvider/MusicProvider';
+import SearchShowBox from '../SearchShowBox/SearchShowBox';
+import { FaTimesCircle } from 'react-icons/fa';
 
 const TopNav = () => {
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [isSingUpOpen, setIsSingUpOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, loading, logOut } = useAuth();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+  const [isSearched, setIsSearched] = useState(false);
+
+  // getting song info from global state
+  const { state } = useMusicData();
+
+  useEffect(() => {
+    if (searchTerm) {
+      setIsSearched(true);
+      setFilteredData(
+        state?.songData.filter((item) =>
+          item?.songName.toLowerCase().includes(searchTerm)
+        )
+      );
+    } else {
+      setIsSearched(false);
+      setFilteredData([]);
+    }
+  }, [searchTerm]);
 
   if (loading) {
     return loading;
   }
 
+  console.log(filteredData);
+
   return (
     <>
-      <div className="navbar bg-black/20 backdrop-blur-sm text-white">
+      <div className="navbar bg-black/20 backdrop-blur-sm text-white h-[72px] relative">
         <div className="flex-1">
           <label
             htmlFor="my-drawer-2"
@@ -26,14 +48,23 @@ const TopNav = () => {
             <AiOutlineMenuFold size={25} />
           </label>
           <div className="ml-5 hidden md:flex   items-center bg-white/10 rounded-lg ppx-5">
-            <span className="text-white/80 ml-5 mr-2">
+            <span className={`text-white/80 ml-5 mr-2`}>
               <BiSearchAlt size={23} />
             </span>
             <input
               type="text"
+              onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
               placeholder="Search For Your Favorite Tracks"
               className="w-72 h-10 bg-transparent  placeholder:text-white/80 outline-none border-none ring-0"
             />
+            <span
+              onClick={() => setIsSearched(!isSearched)}
+              className={`${
+                isSearched ? 'block' : 'hidden'
+              } text-white/80 mr-2 cursor-pointer`}
+            >
+              <FaTimesCircle size={25} />
+            </span>
           </div>
           {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}
         </div>
@@ -90,6 +121,8 @@ const TopNav = () => {
           </div>
         </div>
       </div>
+
+      <SearchShowBox filteredData={filteredData} isSearched={isSearched} />
     </>
   );
 };

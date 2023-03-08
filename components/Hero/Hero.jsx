@@ -50,11 +50,14 @@ const Hero = ({ img }) => {
               >
                 WITH AUDIT
               </motion.h1>
-              <img
-                src="/assets/name-bottom.png"
-                className="w-[30%] h-7 hidden lg:block"
-                alt=""
-              />
+              <motion.div animate={{ opacity: [0, 1] }} className="w-[30%]">
+                <img
+                  src="/assets/name-bottom.png"
+                  className="w-full h-7 hidden lg:block"
+                  alt=""
+                />
+              </motion.div>
+
               <motion.button
                 initial={{ opacity: 0, y: 150 }}
                 animate={{ opacity: 1, y: 0 }}

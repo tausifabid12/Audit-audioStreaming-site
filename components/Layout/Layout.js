@@ -49,18 +49,6 @@ const Layout = ({ children }) => {
       route: '/upload-songs',
       icon: <VscCloudUpload />,
     },
-    // {
-    //   id: 5,
-    //   name: 'logIn',
-    //   route: '/login',
-    //   icon: <VscSignIn />,
-    // },
-    // {
-    //   id: 6,
-    //   name: 'SignUp',
-    //   route: '/signup',
-    //   icon: <VscSignOut />,
-    // },
   ];
 
   const style = {
