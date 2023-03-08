@@ -113,8 +113,8 @@ const Layout = ({ children }) => {
             </li>
             {/* side menus */}
             {pages.map((page) => (
-              <li>
-                <Link key={page.id} href={page.route}>
+              <li key={page.id}>
+                <Link href={page.route}>
                   <div className="py-3 text-white w-full capitalize  flex space-x-4 px-3 transition-all duration-75 ease-linear hover:bg-gradient-to-r from-[rgba(25,110,237,0.3)] to-transparent hover:border-l-4 border-primary">
                     <span className="text-2xl">{page.icon}</span>
                     <motion.p

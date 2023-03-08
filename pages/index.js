@@ -53,7 +53,7 @@ export default function Home({ data }) {
               backgroundRepeat: 'no-repeat',
               backgroundAttachment: 'fixed',
             }}
-            className="space-y-24"
+            className="space-y-24 pt-3"
           >
             <NewSongSec />
             <PopularAlbum />

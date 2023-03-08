@@ -51,6 +51,7 @@ const Player = () => {
     progressBar.current.max = state?.currentAudioInfo?.duration;
   }, [state?.currentAudioInfo?.audioUrl]);
 
+  //setting song duration
   useEffect(() => {
     const seconds = Math.floor(audioPlayer?.current.duration);
     setTrackDuration(seconds);
@@ -76,6 +77,7 @@ const Player = () => {
     animateProgressBar.current = requestAnimationFrame(whilePlaying);
   };
 
+  //handling range
   const handleRange = () => {
     audioPlayer.current.currentTime = progressBar.current.value;
     setCurrentDuration(progressBar.current.value);
@@ -84,6 +86,40 @@ const Player = () => {
   //handling volume
   const handleVolume = () => {
     audioPlayer.current.volume = volumeBar.current.value / 100;
+  };
+
+  // handling next previous button
+  const handleSongChange = (type) => {
+    let nextSong;
+    let currentIndex;
+
+    // getting currentSong index
+    currentIndex = state?.songData.findIndex(
+      (song) => song?.songName === state?.currentAudioInfo?.songName
+    );
+
+    // looping songs
+    if (currentIndex === state?.songData.length) {
+      currentIndex = 0;
+    } else if (currentIndex === 0) {
+      currentIndex = state?.songData.length;
+    }
+
+    //checking pre/next
+    if (type === 'pre') {
+      nextSong = state?.songData[currentIndex - 1];
+    } else {
+      nextSong = state?.songData[currentIndex + 1];
+    }
+
+    dispatch({
+      type: ActionTypes.AddCurrentSongInfo,
+      payload: nextSong,
+    });
+    dispatch({
+      type: ActionTypes.IsSongPlaying,
+      payload: !state.isPlaying,
+    });
   };
 
   return (
@@ -129,7 +165,7 @@ const Player = () => {
           </div>
         </div>
         <div className="flex items-center justify-center space-x-6 text-white text-4xl">
-          <p>
+          <p onClick={() => handleSongChange('pre')}>
             <MdFastRewind />
           </p>
           {/* play button */}
@@ -159,7 +195,7 @@ const Player = () => {
           )}
 
           {/* --------------- */}
-          <p>
+          <p onClick={() => handleSongChange('next')}>
             <MdFastForward />
           </p>
         </div>
