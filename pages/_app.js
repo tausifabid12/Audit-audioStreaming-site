@@ -8,7 +8,9 @@ export default function App({ Component, pageProps }) {
   return (
     <AuthProvider>
       <MusicProvider>
-        <Component {...pageProps} />
+        <div className="max-w-screen-2xl mx-auto bg-black ">
+          <Component {...pageProps} />
+        </div>
       </MusicProvider>
       <Toaster />
     </AuthProvider>
